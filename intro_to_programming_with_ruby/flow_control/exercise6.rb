@@ -6,6 +6,7 @@
       end
     end
 
+    
     equal_to_four(5)
 
     #the program lack one "end" keyword for if statement & method
