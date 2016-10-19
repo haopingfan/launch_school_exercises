@@ -15,7 +15,7 @@ end
 def validation_loop(prompt1, type = 'float')
   input = nil
   loop do
-    prompt(prompt1) unless type == 'boolean'
+    prompt(prompt1) unless type == 'boolean' # the prompt won't be loop when type is boolean
     input = gets.chomp
     input = input.delete '$' if prompt1.include?("loan amount")
     input = input.delete '%' if prompt1.include?("Annual Percentage Rate")
@@ -73,7 +73,9 @@ MSG
 Would you like to perform another calculation?
    (enter Yes to calculation, No to leave)
 MSG
-  prompt(another_calculation)
+  
+  # since i don't want to loop this prompt in the method
+  prompt(another_calculation)             
   answer = validation_loop('', 'boolean')
   break if answer == 'no'
 end
