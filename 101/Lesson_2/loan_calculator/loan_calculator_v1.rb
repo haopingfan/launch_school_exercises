@@ -7,15 +7,13 @@ def validation(input, type)
     input.to_f > 0
   elsif type == 'integer'
     input.to_i > 0 && input.match(/^\d+$/)
-  elsif type == 'boolean'
-    input.casecmp('yes').zero? || input.casecmp('no').zero?
   end
 end
 
 def validation_loop(prompt1, type = 'float')
   input = nil
   loop do
-    prompt(prompt1) unless type == 'boolean'
+    prompt(prompt1)
     input = gets.chomp
     input = input.delete '$' if prompt1.include?("loan amount")
     input = input.delete '%' if prompt1.include?("Annual Percentage Rate")
@@ -24,7 +22,6 @@ def validation_loop(prompt1, type = 'float')
     else
       prompt("Hmm... Must be positive number.") if type == 'float'
       prompt("Hmm... Must be positive integer.") if type == 'integer'
-      prompt("Not valid, plz enter Yes to calculation, No to leave.") if type == 'boolean'
     end
   end
   input
@@ -74,7 +71,15 @@ Would you like to perform another calculation?
    (enter Yes to calculation, No to leave)
 MSG
   prompt(another_calculation)
-  answer = validation_loop('', 'boolean')
+  answer = nil
+  loop do
+    answer = gets.chomp
+    if answer.casecmp('yes').zero? || answer.casecmp('no').zero?
+      break
+    else
+      prompt("Not valid, plz enter Yes to calculation, No to leave.")
+    end
+  end
   break if answer == 'no'
 end
 
