@@ -32,7 +32,6 @@ def win?(user_point, computer_point)
   end
 end
 
-# Program Start
 welcome = <<-MSG
 Welcome to Rock Paper Scissors game!
   (whoever reaches 5 points first wins.)
@@ -42,12 +41,11 @@ prompt(welcome)
 
 # main loop to play agian
 loop do
-  # whoever reaches 5 points first wins
   user_point = 0
   computer_point = 0
 
+  # loop to increment the score
   loop do
-    # user's choice
     prompt_user = <<-MSG
 Make your chocie:
   1:Rock
@@ -65,10 +63,8 @@ MSG
       prompt("Hmm.. not a valid number, plz enter 1, 2, 3, 4, 5")
     end
 
-    # computer's choice
     computer_choice = rand(1..5)
 
-    # the result
     result = if score?(user_choice, computer_choice)
                "You score! "
              elsif score?(computer_choice, user_choice)
@@ -77,18 +73,16 @@ MSG
                "It's a tie. "
              end
 
-    # incrementing point
     if score?(user_choice, computer_choice)
       user_point += 1
     elsif score?(computer_choice, user_choice)
       computer_point += 1
     end
 
-    # display result
     display_user = choice_for_display(user_choice)
     display_computer = choice_for_display(computer_choice)
 
-    system "clear"
+    system('clear') || system('cls')
     prompt_result = <<-MSG
 Your choice is #{display_user}, Computer's choice is #{display_computer}.
    #{result} Your point: #{user_point} ; Computer's point: #{computer_point}
@@ -100,7 +94,6 @@ MSG
   prompt("-------------------------------------------------------")
   prompt(win?(user_point, computer_point))
 
-  # prompt to ask user if want to play agian
   prompt("Would you like to play again? (Yes to play, No to leave)")
   play_again = nil
   loop do
@@ -109,7 +102,7 @@ MSG
     prompt("Not valid, must be yes or no")
   end
   break if play_again == 'no'
-  system "clear"
+  system('clear') || system('cls')
 end
 
 prompt("Thanks for playing this game, Goodbye!")
