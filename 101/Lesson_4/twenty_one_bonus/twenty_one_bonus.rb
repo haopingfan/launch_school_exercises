@@ -42,7 +42,6 @@ def busted?(cards)
 end
 
 # :tie, :dealer, :player, :dealer_busted, :player_busted
-# rubocop: disable Metrics/MethodLength
 def detect_result(dealer_cards, player_cards)
   player_total = total(player_cards)
   dealer_total = total(dealer_cards)
@@ -76,7 +75,6 @@ def display_result(dealer_cards, player_cards)
     prompt 'This round is a tie!'
   end
 end
-# rubocop: enable Metrics/MethodLength
 
 def play_again?
   puts '-------------'
