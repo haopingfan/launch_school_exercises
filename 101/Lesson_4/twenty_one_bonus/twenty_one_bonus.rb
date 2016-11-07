@@ -2,6 +2,7 @@ SUITS = %w(H D S C).freeze
 VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 MAX_NUM = 21
 DEALER_THRESHOLD = 17
+FIVE_ROUNDS = 5
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -11,7 +12,7 @@ def initialize_deck
   SUITS.product(VALUES).shuffle
 end
 
-def value_converter(value)
+def card_value(value)
   if value == 'A'
     11
   elsif value.to_i.zero? # J, Q, K
@@ -26,7 +27,7 @@ def total(cards)
 
   sum = 0
   values.each do |value|
-    sum += value_converter(value)
+    sum += card_value(value)
   end
 
   # correct for Aces
@@ -93,15 +94,50 @@ def press_to_continue
   gets
 end
 
-def win_five_rounds?(player_won, dealer_won)
-  player_won == 5 || dealer_won == 5
+def match_complete?(player_won, dealer_won)
+  player_won == FIVE_ROUNDS || dealer_won == FIVE_ROUNDS
+end
+
+def arr_interpolation(arr)
+  string = ''
+  arr.each_with_index do |item, index|
+    string << item.to_s
+    string << ', ' unless arr.size == (index + 1)
+  end
+  string
 end
 
 def end_of_round_output(dealer_cards, player_cards)
   puts '=============='
-  prompt "Dealer has #{dealer_cards}, for a total of: #{total(dealer_cards)}"
-  prompt "Player has #{player_cards}, for a total of: #{total(player_cards)}"
+  prompt "Dealer has #{arr_interpolation(dealer_cards)}, for a total of: #{total(dealer_cards)}"
+  prompt "Player has #{arr_interpolation(player_cards)}, for a total of: #{total(player_cards)}"
   puts '=============='
+end
+
+def card_suits(abbr)
+  case abbr
+  when 'H'
+    'Hearts'
+  when 'D'
+    'Diamonds'
+  when 'S'
+    'Spades'
+  when 'C'
+    'Clubs'
+  end
+end
+
+def show_cards(cards, role)
+  cards.each_with_index do |card, index|
+    msg = "#{card[1]} of #{card_suits(card[0])}"
+    if index.zero?
+      puts msg
+    elsif role == 'player'
+      puts msg.rjust(23+string.size)
+    elsif role == 'dealer'
+      puts msg.rjust(27+string.size)
+    end
+  end
 end
 
 # -------- program start ------------
@@ -150,7 +186,8 @@ Welcome to Twenty-One!
       if player_turn == 'h'
         player_cards << deck.pop
         prompt 'You chose to hit!'
-        prompt "Your cards are now: #{player_cards}"
+        print "=> Your cards are now: "
+        show_cards(player_cards, 'player')
         prompt "Your total is now: #{total(player_cards)}"
       end
 
@@ -161,7 +198,7 @@ Welcome to Twenty-One!
       end_of_round_output(dealer_cards, player_cards)
       display_result(dealer_cards, player_cards)
       dealer_won += 1
-      break if win_five_rounds?(player_won, dealer_won)
+      break if match_complete?(player_won, dealer_won)
       press_to_continue
       next
     else
@@ -176,7 +213,8 @@ Welcome to Twenty-One!
 
       prompt 'Dealer hits!'
       dealer_cards << deck.pop
-      prompt "Dealer's cards are now: #{dealer_cards}"
+      print "=> Dealer's cards are now: "
+      show_cards(dealer_cards, 'dealer')
     end
 
     if busted?(dealer_cards)
@@ -184,7 +222,7 @@ Welcome to Twenty-One!
       end_of_round_output(dealer_cards, player_cards)
       display_result(dealer_cards, player_cards)
       player_won += 1
-      break if win_five_rounds?(player_won, dealer_won)
+      break if match_complete?(player_won, dealer_won)
       press_to_continue
       next
     else
@@ -202,11 +240,11 @@ Welcome to Twenty-One!
       dealer_won += 1
     end
 
-    break if win_five_rounds?(player_won, dealer_won)
+    break if match_complete?(player_won, dealer_won)
     press_to_continue
   end
 
-  if player_won == 5
+  if player_won == FIVE_ROUNDS
     prompt 'You won 5 rounds. You win the game!'
   else
     prompt 'Dealer won 5 rounds. Dealer wins the game!'
