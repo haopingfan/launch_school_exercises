@@ -1,15 +1,16 @@
-SUITS = %w(H D S C).freeze
+SUITS = { 'H' => 'Hearts', 'D' => 'Diamonds',
+          'S' => 'Spades', 'C' => 'Clubs' }.freeze
 VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 MAX_NUM = 21
 DEALER_THRESHOLD = 17
-FIVE_ROUNDS = 5
+ROUNDS_TO_WIN = 5
 
 def prompt(msg)
   puts "=> #{msg}"
 end
 
 def initialize_deck
-  SUITS.product(VALUES).shuffle
+  SUITS.keys.product(VALUES).shuffle
 end
 
 def card_value(value)
@@ -95,10 +96,10 @@ def press_to_continue
 end
 
 def match_complete?(player_won, dealer_won)
-  player_won == FIVE_ROUNDS || dealer_won == FIVE_ROUNDS
+  player_won == ROUNDS_TO_WIN || dealer_won == ROUNDS_TO_WIN
 end
 
-def arr_interpolation(arr)
+def cards_output_format(arr)
   string = ''
   arr.each_with_index do |item, index|
     string << item.to_s
@@ -109,38 +110,27 @@ end
 
 def end_of_round_output(dealer_cards, player_cards)
   puts '=============='
-  prompt "Dealer has #{arr_interpolation(dealer_cards)}, for a total of: #{total(dealer_cards)}"
-  prompt "Player has #{arr_interpolation(player_cards)}, for a total of: #{total(player_cards)}"
+  print "=> Dealer has #{cards_output_format(dealer_cards)},"
+  puts " for a total of: #{total(dealer_cards)}"
+  print "=> Player has #{cards_output_format(player_cards)},"
+  puts " for a total of: #{total(player_cards)}"
   puts '=============='
-end
-
-def card_suits(abbr)
-  case abbr
-  when 'H'
-    'Hearts'
-  when 'D'
-    'Diamonds'
-  when 'S'
-    'Spades'
-  when 'C'
-    'Clubs'
-  end
 end
 
 def show_cards(cards, role)
   cards.each_with_index do |card, index|
-    msg = "#{card[1]} of #{card_suits(card[0])}"
+    msg = "#{card[1]} of #{SUITS[card[0]]}"
     if index.zero?
       puts msg
     elsif role == 'player'
-      puts msg.rjust(23+string.size)
+      puts msg.rjust(23 + msg.size)
     elsif role == 'dealer'
-      puts msg.rjust(27+string.size)
+      puts msg.rjust(27 + msg.size)
     end
   end
 end
 
-# -------- program start ------------
+# ----------- program start ----------------
 
 # loop to play again
 # rubocop: disable Metrics/BlockLength
@@ -153,7 +143,7 @@ loop do
     system('clear') || system('cls')
     msg = <<-MSG
 Welcome to Twenty-One!
-   Who wins 5 rounds first wins the game!
+   Who wins #{ROUNDS_TO_WIN} rounds first wins the game!
    Player won #{player_won} rounds / Dealer won #{dealer_won} rounds
     MSG
     prompt msg
@@ -244,10 +234,10 @@ Welcome to Twenty-One!
     press_to_continue
   end
 
-  if player_won == FIVE_ROUNDS
-    prompt 'You won 5 rounds. You win the game!'
+  if player_won == ROUNDS_TO_WIN
+    prompt "You won #{ROUNDS_TO_WIN} rounds. You win the game!"
   else
-    prompt 'Dealer won 5 rounds. Dealer wins the game!'
+    prompt "Dealer won #{ROUNDS_TO_WIN} rounds. Dealer wins the game!"
   end
 
   break unless play_again?
