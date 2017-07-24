@@ -1,0 +1,19 @@
+<body>
+  <script>
+    function joinArray(arr, joiner) {
+      var newString = '';
+      for(var i = 0; i < arr.length; i++) {
+        newString += arr[i];
+
+        if (joiner !== undefined) {
+          newString += joiner;
+        }
+      }
+
+      return newString;
+    }
+
+    console.log(joinArray(['a', 'b', 'c'], '+')); // Returns "a+b+c"
+    console.log(joinArray([1, 4, 1, 5, 9, 2, 7])); // Returns "1415927"
+  </script>
+</body>

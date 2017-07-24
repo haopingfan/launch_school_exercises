@@ -1,0 +1,15 @@
+<body>
+  <script>
+    function gcd(a, b) {
+      for(var i = Math.min(a, b); i > 0; i--) {
+        if ((a % i === 0) && (b % i === 0)) {
+          return i;
+        }
+      }
+    }
+
+    console.log(gcd(12, 4));   // 4
+    console.log(gcd(15, 10));  // 5
+    console.log(gcd(9, 2));    // 1
+  </script>
+</body>

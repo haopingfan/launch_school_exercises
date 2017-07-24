@@ -1,0 +1,19 @@
+<body>
+  <script>
+    var scoreOne = prompt('Enter score 1:');
+    var scoreTwo = prompt('Enter score 2:');
+    var scoreThree = prompt('Enter score 3:');
+
+    var average = (Number(scoreOne) + Number(scoreTwo) + Number(scoreThree)) / 3
+
+    if (average >= 90) {
+      console.log('Based on the average of your 3 scores your letter grade is "A".')
+    } else if (average >= 70) {
+      console.log('Based on the average of your 3 scores your letter grade is "B".')
+    } else if (average >= 50) {
+      console.log('Based on the average of your 3 scores your letter grade is "C".')
+    } else {
+      console.log('Based on the average of your 3 scores your letter grade is "F".')
+    }
+  </script>
+</body>

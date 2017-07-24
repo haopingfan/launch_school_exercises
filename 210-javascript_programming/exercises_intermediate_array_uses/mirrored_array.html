@@ -1,0 +1,18 @@
+<body>
+  <script>
+    function mirroredArray(arr) {
+      var newArr = arr;
+      var len = arr.length;
+
+      for(var i = len - 1; i >= 0; i--) {
+        newArr.push(arr[i]);
+      }
+
+      return newArr;
+    }
+
+    var digits = [4, 8, 15, 16, 23, 42];
+    console.log(mirroredArray(digits)); 
+    // Returns [4, 8, 15, 16, 23, 42, 42, 23, 16, 15, 8, 4]
+  </script>
+</body>

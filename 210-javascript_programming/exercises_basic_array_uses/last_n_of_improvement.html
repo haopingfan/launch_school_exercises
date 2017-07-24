@@ -1,0 +1,13 @@
+<body>
+  <script>
+    function lastNOf(arr, count) {
+      if (count > arr.length) {
+        return arr;
+      }
+      return arr.slice(arr.length - count);
+    }
+
+    var digits = [4, 8, 15, 16, 23, 42];
+    console.log(lastNOf(digits, 7));
+  </script>
+</body>

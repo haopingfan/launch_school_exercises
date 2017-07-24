@@ -1,0 +1,49 @@
+<body>
+  <script>
+    function indexOf(firstString, secondString) {
+      var substring;
+
+      for (var i = 0; i <= (firstString.length - secondString.length); i++) {
+        substring = '';
+        for (var j = 0; j < secondString.length; j++) {
+          substring += firstString[i + j];
+        }
+
+        if (substring === secondString) {
+          return i;
+        }
+      }
+
+      return -1;
+    }
+    
+    console.log(indexOf('Some strings', 's'));      // 5
+    console.log(indexOf('Blue Whale', 'Whale'));    // 5
+    console.log(indexOf('Blue Whale', 'Blute'));    // -1
+    console.log(indexOf('Blue Whale', 'leB'));      // -1
+
+    // --------------------------------------------------
+    
+    function lastIndexOf(firstString, secondString) {
+      var substring;
+
+      for (var i = firstString.length - secondString.length; i >= 0; i--) {
+        substring = '';
+        for (var j = 0; j < secondString.length; j++) {
+          substring += firstString[i + j];
+        }
+
+        if (substring === secondString) {
+          return i;
+        }
+      }
+
+      return -1;
+    }
+
+    console.log(lastIndexOf('Some strings', 's'));                  // 11
+    console.log(lastIndexOf('Blue Whale, Killer Whale', 'Whale'));  // 19
+    console.log(lastIndexOf('Blue Whale, Killer Whale', 'all'));    // -1
+
+  </script>
+</body>

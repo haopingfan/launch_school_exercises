@@ -1,0 +1,70 @@
+<body>
+  <script>
+    function splitString(string, delimiter) {
+      var len = string.length;
+      var index = -1;
+      var newString;
+      var previousIndex;
+
+      if (delimiter === undefined) {
+        console.log('ERROR: No delimiter');
+        return;
+      }
+
+      if (delimiter === '') {
+        for(var k = 0; k < len; k++) {
+          console.log(string[k]); 
+        }
+        return;
+      }
+
+      for (var i = 0; i < len; i++) {
+        if (string[i] === delimiter) {
+          newString = '';
+          previousIndex = index;
+          index = i;
+
+          for (var j = previousIndex + 1; j < i; j++) {
+            newString += string[j];    
+          }
+          console.log(newString);
+        }
+
+        if ( (i === len - 1) && (string[i] !== delimiter)) {
+          newString = '';
+          for (var z = index + 1; z < len; z++) {
+            newString += string[z];    
+          }
+          console.log(newString);          
+        }
+      }
+    }
+
+    splitString('abc,123,hello world', ',');
+    // logs:
+    // abc
+    // 123
+    // hello world
+
+    splitString('hello');
+    // logs:
+    // ERROR: No delimiter
+
+    splitString('hello', '');
+    // logs:
+    // h
+    // e
+    // l
+    // l
+    // o
+
+    splitString('hello', ';');
+    // logs:
+    // hello
+
+    splitString(';hello;', ';');
+    // logs:
+    //  (this is a blank line)
+    // hello
+  </script>
+</body>

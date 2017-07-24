@@ -1,0 +1,18 @@
+<body>
+  <script>
+  function firstIndex(value, arr) {
+    var position = -1;
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] === value) {
+        position = i;
+        break;
+      }
+    }
+
+    return position;
+  }
+
+  console.log(firstIndex(2, [1, 2, 3])); // 1
+  console.log(firstIndex(9, [1, 2, 3])); // -1
+  </script>
+</body>

@@ -1,0 +1,17 @@
+<body>
+  <script>
+    function hello() {
+      var a;
+
+      a = 'hello';
+      console.log(a); // hello
+
+      if (false) {
+        a = 'hello again';
+      }
+    }
+
+    hello();
+    console.log(a); // ReferenceError
+  </script>
+</body>

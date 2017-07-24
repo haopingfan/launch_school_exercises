@@ -1,0 +1,31 @@
+<html>
+  <script>
+    function totalArea(rectangles) {
+      return rectangles.reduce(addArea, 0);
+    }
+
+    function addArea(previousValue, rectangle) {
+      var sum = previousValue + (rectangle[0] * rectangle[1]);
+      return sum;
+    }
+
+    function totalSquareArea(rectangles) {
+      var areas = rectangles.map(function(rectangle) {
+        if (rectangle[0] === rectangle[1]) {
+          return rectangle[0] * rectangle[1];
+        } else {
+          return 0;
+        }
+      });
+
+      return areas.reduce(function(sum, area) {
+        return sum + area;
+      });
+    }
+
+
+    var rectangles = [[3, 4], [6, 6], [1, 8], [9, 9], [2, 2]];
+    console.log(totalArea(rectangles)); // 141
+    console.log(totalSquareArea(rectangles)); // 121
+  </script>
+</html>

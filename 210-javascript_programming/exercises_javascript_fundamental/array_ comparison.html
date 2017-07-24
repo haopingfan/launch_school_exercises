@@ -1,0 +1,48 @@
+<body>
+  <script>
+    function areArraysEqual(array1, array2) {
+      var sort_array1 = array1.sort();
+      var sort_array2 = array2.sort();
+
+      if (array1.length !== array2.length) {
+        return false;
+      }
+
+      for (var i = 0; i < array1.length; i++) {
+        if (array1[i] !== array2[i]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // ------------ or ---------------
+
+    function areArraysEqual(array1, array2) {
+       if (array1.length !== array2.length) {
+         return false;
+       }
+
+      var index;
+      for (var i = 0; i < array1.length; i++) {
+        index = array2.indexOf(array1[i]);
+        if (index >= 0) {
+          array2.splice(index, 1);
+        } else {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    console.log(areArraysEqual([1, 2, 3], [1, 2, 3]));                  // true
+    console.log(areArraysEqual([1, 2, 3], [3, 2, 1]));                  // true
+    console.log(areArraysEqual(['a', 'b', 'c'], ['b', 'c', 'a']));      // true
+    console.log(areArraysEqual(['1', 2, 3], [1, 2, 3]));                // false
+    console.log(areArraysEqual([1, 1, 2, 3], [3, 1, 2, 1]));            // true
+    console.log(areArraysEqual([1, 2, 3, 4], [1, 1, 2, 3]));            // false
+    console.log(areArraysEqual([1, 1, 2, 2], [4, 2, 3, 1]));            // false
+  </script>
+</body>

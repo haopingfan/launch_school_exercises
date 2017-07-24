@@ -1,0 +1,21 @@
+<body>
+  <script>
+    function octalToDecimal(number) {
+      var digits = number.split('');
+      var result = digits.reverse().map(function(digit, index) {
+        return digit * (8 ** index);
+      }).reduce(function(sum, number){
+        return sum + number;
+      });
+
+      return result
+    }
+
+    console.log(octalToDecimal('1'));           // 1
+    console.log(octalToDecimal('10'));          // 8
+    console.log(octalToDecimal('130'));         // 88
+    console.log(octalToDecimal('17'));          // 15
+    console.log(octalToDecimal('2047'));        // 1063
+    console.log(octalToDecimal('011'));         // 9
+  </script>
+</body>

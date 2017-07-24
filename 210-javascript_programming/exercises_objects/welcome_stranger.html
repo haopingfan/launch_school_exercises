@@ -1,0 +1,12 @@
+<body>
+  <script>
+    function greetings(arr, obj) {
+     var name = 'Hello, ' + arr.join(' ') + '!';
+     var position = 'Nice to have a ' + obj.title + ' '+ obj.occupation + ' around.';
+
+     return name + ' ' + position;
+    }
+
+    console.log(greetings(['John', 'Q', 'Doe'], { title: 'Master', occupation: 'Plumber' }));
+  </script>
+</body>

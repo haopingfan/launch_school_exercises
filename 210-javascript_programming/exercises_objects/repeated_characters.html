@@ -1,0 +1,35 @@
+<body>
+  <script>
+    function repeatedCharacters(str) {
+      var obj = {};
+      var obj_more_than_one = {};
+      var char;
+      var value;
+
+      for (var i = 0; i < str.length; i++) {
+        char = str[i].toLowerCase();
+
+        if (obj[char]) {
+          obj[char] += 1;
+        } else {
+          obj[char] = 1;
+        }
+      }
+
+      for (value in obj) {
+        if (obj[value] > 1) {
+          obj_more_than_one[value] = obj[value];
+        }
+      }
+
+      return obj_more_than_one;
+    }
+
+
+    console.log(repeatedCharacters('Programming'));    // { r: 2, g: 2, m: 2 }
+    console.log(repeatedCharacters('Combination'));    // { o: 2, i: 2, n: 2 }
+    console.log(repeatedCharacters('Pet'));            // {}
+    console.log(repeatedCharacters('Paper'));          // { p: 2 }
+    console.log(repeatedCharacters('Baseless'));       // { s: 3, e: 2 }
+  </script>
+</body>

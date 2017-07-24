@@ -1,0 +1,59 @@
+<body>
+  <script>
+    function splice(array, start, deleteCount) {
+      var tempArr = [];
+      var deleteArr = [];
+
+      if (start > array.length) {
+        start = array.length;
+      }
+
+      if (deleteCount > array.length - start) {
+        deleteCount = array.length - start;
+      }
+
+      for (var k = start; k < (start + deleteCount); k++) {
+        deleteArr.push(array[k]);
+      }
+
+      for (var i = (start + deleteCount); i < array.length; i++) {
+        tempArr.push(array[i]);
+      }
+
+      array.length = start;
+
+      for (var j = 3; j < arguments.length; j++) {
+        array.push(arguments[j]);
+      }
+
+      for (var z = 0; z < tempArr.length; z++) {
+        array.push(tempArr[z]);
+      }
+
+      return deleteArr;
+    }
+
+    console.log(splice([1, 2, 3], 1, 2));                   // [2, 3]
+    console.log(splice([1, 2, 3], 1, 3));                   // [2, 3]
+    console.log(splice([1, 2, 3], 1, 0));                   // []
+    console.log(splice([1, 2, 3], 0, 1));                   // [1]
+    console.log(splice([1, 2, 3], 1, 0, 'a'));              // []
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 1, 1, 'two'));                  // [2]
+    console.log(arr);                                       // [1, 'two', 3];
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 1, 2, 'two', 'three'));          // [2 ,3]
+    console.log(arr);                                        // [1, "two", "three"]
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 1, 0));                         // []
+    console.log(splice(arr, 1, 0, 'a'));                    // []
+    console.log(arr);                                       // [1, 'a', 2, 3]
+
+    var arr = [1, 2, 3];
+    console.log(splice(arr, 0, 0, 'a'));                    // []
+    console.log(arr);                                       // ['a', 1, 2, 3] 
+  </script>
+</body>

@@ -1,0 +1,18 @@
+<body>
+  <script>
+    function sum(values) {
+      var total = 0;
+      for (var i = 0, len = values.length; i < len; i++) {
+      total += values[i];
+      }
+
+      return total;
+    }
+
+    function average(values) {
+      return sum(values) / values.length;
+    }
+
+    console.log(average([3, 3, 3, 3, 3]));
+  </script>
+</body>

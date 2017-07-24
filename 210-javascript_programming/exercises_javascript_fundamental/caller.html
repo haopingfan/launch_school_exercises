@@ -1,0 +1,15 @@
+<body>
+  <script>
+    function makeDoubler(name) {
+      return function(number) {
+        console.log('This function was called by ' + caller + '.');
+        return number + number;
+      }
+    }
+
+    
+    var doubler = makeDoubler('Victor');
+    doubler(5); // 10
+    // This function was called by Victor.
+  </script>
+</body>

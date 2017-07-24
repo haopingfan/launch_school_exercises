@@ -1,0 +1,20 @@
+<body>
+  <script>
+    function average(values) {
+      return sum(values) / values.length;
+    }
+
+    function sum(values) {
+      var total = 0;
+      for (var i = 0, len = values.length; i < len; i++) {
+          total += values[i];
+      }
+
+      return total;
+    }
+
+    var temperatures = [73, 58, 81, 64, 67];
+
+    console.log(average(temperatures));
+  </script>
+</body>

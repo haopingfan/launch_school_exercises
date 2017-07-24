@@ -1,0 +1,24 @@
+<body>
+  <script>
+    function lastNOf(arr, count) {
+      var len = arr.length;
+      return arr.slice(len - count, len);
+    }
+
+    // ------- or -------
+
+    function lastNOf(arr, count) {
+      var len = arr.length;
+      var newArr = [];
+
+      for (var i = len - 1; i >= len - count; i--) {
+        newArr.unshift(arr[i]);
+      }
+
+      return newArr;
+    }
+
+    var digits = [4, 8, 15, 16, 23, 42];
+    console.log(lastNOf(digits, 3)); // Returns [16, 23, 42]
+  </script>
+</body>

@@ -1,0 +1,39 @@
+<body>
+  <script>
+    function logMultiples(number) {
+      for (var i = 100; i >= 0; i--) {
+        if (i % 2 === 1 && i % number === 0) {
+          console.log(i);
+        }
+      }
+    }
+
+    logMultiples(17);
+    logMultiples(21);
+
+    // ---------------------------------
+
+    function logMultiples(number) {
+      var multiple = Math.floor(100 / number) * number;
+
+      while (multiple > 0) {
+        if (multiple % 2 === 1) {
+          console.log(multiple);
+        }
+
+        multiple -= number;
+      }
+    }
+
+    // ------------- or ----------------
+
+    function logMultiples(number) {
+      for (var multiple = Math.floor(100 / number) * number; multiple > 0; multiple -= number) {
+        if (multiple % 2 === 1) {
+          console.log(multiple);
+        }
+      }
+    }
+
+  </script>
+</body>

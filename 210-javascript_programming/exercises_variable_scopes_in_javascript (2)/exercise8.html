@@ -1,0 +1,16 @@
+<body>
+  <script>
+    var a;
+    var setScope;
+    
+    a = 'outer';
+
+    console.log(a); // outer
+    setScope(); // TypeError, setScope is not a function
+    console.log(a);
+
+    setScope = function() {
+      a = 'inner';
+    }  
+  </script>
+</body>

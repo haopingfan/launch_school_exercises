@@ -1,0 +1,50 @@
+<body>
+  <script>
+    function isPrime(number) {
+      if (number <= 1) {
+        return false;
+      }
+
+      for (var i = 2; i < number ; i++) {
+        if (number % i === 0) {
+          return false; 
+        }
+      }
+
+      return true;
+    }
+
+    function checkGoldbach(number) {
+      if ((number % 2 === 1) || number < 4) {
+        console.log(null);
+        return;
+      }
+
+      for (var i = 2; i <= (number / 2); i++) {
+        var remainder = number - i;
+        if (isPrime(i) && isPrime(remainder)) {
+          console.log(i + ' ' + remainder)  
+        }
+      }
+    }
+
+
+    checkGoldbach(3);
+    // logs: null
+
+    checkGoldbach(4);
+    // logs: 2 2
+
+    checkGoldbach(12);
+    // logs: 5 7
+
+    checkGoldbach(100);
+    // logs:
+    // 3 97
+    // 11 89
+    // 17 83
+    // 29 71
+    // 41 59
+    // 47 53
+  </script>
+</body>

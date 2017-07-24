@@ -1,0 +1,15 @@
+<body>
+  <script>
+    function firstNOf(arr, count) {
+      var newArr = [];
+      for (var i = 0; i < count; i++) {
+        newArr.push(arr[i]);
+      }
+
+      return newArr;
+    } 
+
+    var digits = [4, 8, 15, 16, 23, 42];
+    console.log(firstNOf(digits, 3)); // Returns [4, 8, 15]   
+  </script>
+</body>

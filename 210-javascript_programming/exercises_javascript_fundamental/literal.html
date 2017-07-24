@@ -1,0 +1,45 @@
+<body>
+  <script>
+  
+    var myObject = {
+      a: 'name',
+      'b': 'test',
+      123: 'c',
+      1: 'd',
+    };
+
+    console.log(myObject[1]);   // d
+    console.log(myObject[a]);   // error
+    console.log(myObject['a']); // name
+    console.log(myObject.a);    // name 
+
+    // ---------
+
+    var a = 'a'
+    var myObject = {
+      'a': 'name',
+      'b': 'test',
+      123: 'c',
+      1: 'd',
+    };
+
+    console.log(myObject[1]);   // d
+    console.log(myObject[a]);   // name
+    console.log(myObject.a);    // name  
+
+
+    // ---------
+
+    var myObject = {
+      'a': 'name',
+      'b': 'test',
+      123: 'c',
+      1: 'd',
+    };
+
+    console.log(myObject[1]);     // d
+    console.log(myObject['a']);   // name
+    console.log(myObject.a);      // name   
+
+  </script>
+</body>

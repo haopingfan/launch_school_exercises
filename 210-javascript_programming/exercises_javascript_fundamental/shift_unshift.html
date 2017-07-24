@@ -1,0 +1,71 @@
+<body>
+  <script>
+    function shift(arr) {
+      if (arr.length === 0) {
+        return undefined;
+      }
+
+      first_item = arr[0];
+      for (var i = 0; i < arr.length; i++) {
+        arr[i] = arr[i + 1];
+      }
+
+      arr.length = arr.length - 1;
+
+      return first_item;
+    }
+
+    // ------------- or ----------------
+
+    function shift(arr) {
+      first_item = arr[0];
+      arr.splice(0, 1);
+
+      return first_item;
+    }
+
+    a = [1, 2, 3]
+    console.log(shift(a));           // 1
+    console.log(a);                  // [2, 3]                 
+    console.log(shift([]));          // undefined
+    b = [[1, 2, 3], 4 ,5]            
+    console.log(shift(b));           // [1, 2, 3]
+    console.log(b)                   // [4, 5]
+
+
+    // --------------------------------
+
+    function unshift(arr) {
+      for (var i = arr.length - 1; i >= 0; i--) {
+        arr[i + arguments.length - 1] = arr[i];
+      }
+      for (var j = 0; j < arguments.length - 1; j++) {
+        arr[j] = arguments[j + 1];
+      }
+
+      return arr.length;
+    }
+
+    // ------------ or ---------------
+
+    function unshift(arr) {
+      for (var i = arguments.length - 1; i > 0; i--) {
+        arr.splice(0, 0, arguments[i]);
+      }
+
+      return arr.length;
+    }
+
+    a = [1, 2, 3]
+    console.log(unshift(a, 5, 6));                // 5
+    console.log(a);                               // [5, 6, 1, 2, 3]
+    console.log(unshift([1, 2, 3]));              // 3
+    console.log(unshift([4, 5], [1, 2 ,3]));      // 3
+
+    var testArray = [1, 2, 3];
+    console.log(shift(testArray));                // 1
+    console.log(testArray);                       // [2, 3]
+    console.log(unshift(testArray, 5));           // 3
+    console.log(testArray);                       // [5, 2, 3]
+  </script>
+</body>

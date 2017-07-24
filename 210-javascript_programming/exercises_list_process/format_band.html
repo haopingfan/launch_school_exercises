@@ -1,0 +1,35 @@
+<body>
+  <script>
+    var bands = [
+      { name: 'sunset rubdown', country: 'UK', active: false },
+      { name: 'women', country: 'Germany', active: false },
+      { name: 'a silver mt. zion', country: 'Spain', active: true },
+    ];
+
+    function processBands(datas) {
+      datas.forEach(function(data){
+        data['name'] = capitalizeFirstLetter(data['name']).replace(".", "");
+        data['country'] = 'Canada';
+      });
+
+      return datas;
+    }
+
+    function capitalizeFirstLetter(sentence) {
+      var strings = sentence.split(' ')
+      return strings.map(function(string){
+        return string.charAt(0).toUpperCase() + string.slice(1)
+      }).join(' ');
+    }
+
+    console.log(processBands(bands));
+
+    // should return:
+
+    //[
+    //  { name: 'Sunset Rubdown', country: 'Canada', active: false },
+    //  { name: 'Women', country: 'Canada', active: false },
+    //  { name: 'A Silver Mt Zion', country: 'Canada', active: true },
+    //]
+  </script>
+</body>

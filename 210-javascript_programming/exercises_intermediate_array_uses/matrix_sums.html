@@ -1,0 +1,22 @@
+<body>
+  <script>
+    function matrixSums(arr) {
+      var newArr = [];
+      var sum;
+
+      for (var i = 0; i < arr.length; i++) {
+        sum = 0;
+        for (var j = 0; j < arr[i].length; j++) {
+          sum += arr[i][j];
+        }
+        
+        newArr.push(sum);
+      }
+
+      return newArr;
+    }
+
+    console.log(matrixSums([[2, 8, 5], [12, 48, 0], [12]])); 
+    // Returns [15, 60, 12]
+  </script>
+</body>

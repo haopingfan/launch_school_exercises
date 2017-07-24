@@ -1,0 +1,14 @@
+<body>
+  <script>
+    function anagram(word, list) {
+      var filtered = list.filter(function(value) {
+        return word.split('').sort().join() === value.split('').sort().join();
+      });
+
+      return filtered;
+    }
+
+    console.log(anagram('listen', ['enlists', 'google', 'inlets', 'banana'])); // [ "inlets" ]
+    console.log(anagram('listen', ['enlist', 'google', 'inlets', 'banana']));  // [ "enlist", "inlets" ]
+  </script>
+</body>
